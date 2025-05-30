@@ -33,6 +33,8 @@ Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatur
 - Funciona em simulação 100% online no [Wokwi](https://wokwi.com/)
 
 ---
+### Fluxograma de Funcionamento
+![Image](https://github.com/user-attachments/assets/600a1a91-5547-48ef-8627-efe3b2d78f8c)
 
 ## Tópico MQTT Utilizado
 
