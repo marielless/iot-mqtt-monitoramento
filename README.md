@@ -1,10 +1,10 @@
-# 🌡️ Projeto IoT: Monitoramento de Temperatura e Umidade com MQTT
+# Projeto IoT: Monitoramento de Temperatura e Umidade com MQTT
 
 Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatura e umidade de um ambiente. Os dados são enviados em tempo real via protocolo MQTT para um broker na nuvem, permitindo a visualização remota dos valores. Caso a temperatura ultrapasse um limite definido (ex: 20 °C), um LED é acionado como alerta visual.
 
 ---
 
-## 🔧 Materiais Utilizados
+## Materiais Utilizados
 
 | Componente | Descrição |
 |------------|-----------|
@@ -16,7 +16,7 @@ Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatur
 
 ---
 
-## ⚙️ Funcionamento e Funcionalidades
+##  Funcionamento e Funcionalidades
 
 1. O ESP32 conecta-se automaticamente à rede Wi-Fi configurada.
 2. O sensor DHT22 realiza leituras periódicas de temperatura e umidade.
