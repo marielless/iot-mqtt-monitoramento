@@ -34,7 +34,7 @@ Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatur
 
 ---
 ### Fluxograma de Funcionamento
-![Image](https://github.com/user-attachments/assets/600a1a91-5547-48ef-8627-efe3b2d78f8c)
+<img src="https://github.com/user-attachments/assets/600a1a91-5547-48ef-8627-efe3b2d78f8c" alt="Fluxograma IoT" width="300">
 
 ## Tópico MQTT Utilizado
 
