@@ -1,6 +1,27 @@
 # Projeto IoT: Monitoramento de Temperatura e Umidade com MQTT
 
-Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatura e umidade de um ambiente. Os dados são enviados em tempo real via protocolo MQTT para um broker na nuvem, permitindo a visualização remota dos valores. Caso a temperatura ultrapasse um limite definido (ex: 20 °C), um LED é acionado como alerta visual.
+Este projeto utiliza um microcontrolador **ESP32**, um sensor **DHT22** e um **LED** para monitorar a temperatura e a umidade de um ambiente. Quando a temperatura atinge ou ultrapassa 20 °C, o LED é acionado automaticamente como alerta. Os dados coletados são enviados para um **broker MQTT na nuvem (HiveMQ)**, permitindo o monitoramento remoto via internet.
+
+---
+
+## Funcionalidades
+
+- Leitura de **temperatura e umidade** com sensor DHT22  
+- Publicação dos dados no formato **JSON** via protocolo MQTT  
+- Acesso remoto em tempo real usando **HiveMQ Web Client**  
+- **Acionamento do LED** sempre que a temperatura ≥ 20 °C  
+- Comunicação segura via **TLS (porta 8884)**  
+
+---
+
+## Fluxo de Funcionamento
+
+1. O ESP32 conecta-se automaticamente ao Wi-Fi.
+2. O sensor DHT22 realiza a leitura dos dados.
+3. Os dados são publicados no tópico MQTT `esp32/dht` no formato JSON.
+4. Um cliente MQTT (ex: HiveMQ Web Client) recebe os dados.
+5. Se a temperatura for ≥ 20 °C, o LED acende.
+6. Se a temperatura for < 20 °C, o LED apaga automaticamente.
 
 ---
 
@@ -8,41 +29,47 @@ Este projeto utiliza um ESP32, sensor DHT22 e um LED para monitorar a temperatur
 
 | Componente | Descrição |
 |------------|-----------|
-| ESP32      | Placa microcontrolada com Wi-Fi embutido |
-| DHT22      | Sensor de temperatura e umidade de alta precisão |
-| LED        | Atuador visual de alerta para temperatura |
-| Resistor   | 220 Ω (proteção para o LED) |
-| Software   | [Wokwi](https://wokwi.com/) (simulador online), [HiveMQ](https://www.hivemq.com/) (broker MQTT), [IDE Arduino](https://www.arduino.cc/en/software) |
+| **ESP32**  | Microcontrolador com Wi-Fi |
+| **DHT22**  | Sensor de temperatura e umidade |
+| **LED**    | Atuador visual (alerta de temperatura) |
+| **Resistor 220 Ω** | Limitador de corrente para o LED |
+| **Software** | [Wokwi](https://wokwi.com/) (simulação), [IDE Arduino](https://www.arduino.cc/en/software), [HiveMQ Web Client](https://www.hivemq.com/demos/websocket-client/) |
 
 ---
 
-##  Funcionamento e Funcionalidades
+## Tópicos MQTT
 
-1. O ESP32 conecta-se automaticamente à rede Wi-Fi configurada.
-2. O sensor DHT22 realiza leituras periódicas de temperatura e umidade.
-3. Os dados coletados são enviados no formato JSON para o tópico MQTT `esp32/dht`.
-4. Um cliente MQTT (como o [MQTT Explorer](https://mqtt-explorer.com/) ou o [HiveMQ Web Client](https://www.hivemq.com/demos/websocket-client/)) pode visualizar as mensagens em tempo real.
-5. Se a temperatura ≥ 20 °C, o LED acende automaticamente.
-6. Quando a temperatura retorna abaixo de 20 °C, o LED apaga.
+| Tópico       | Descrição                      |
+|--------------|--------------------------------|
+| `esp32/dht`  | Publicação de dados JSON com temperatura e umidade |
 
-### Destaques da solução
-
-- Comunicação segura com HiveMQ via TLS (porta 8883)
-- Mensagens publicadas em JSON
-- Visualização em tempo real de dados com clientes MQTT
-- Funciona em simulação 100% online no [Wokwi](https://wokwi.com/)
-
----
-### Fluxograma de Funcionamento
-<img src="https://github.com/user-attachments/assets/600a1a91-5547-48ef-8627-efe3b2d78f8c" alt="Fluxograma IoT" width="300">
-
-## Tópico MQTT Utilizado
-
-- Tópico: `esp32/dht`
-- Exemplo de Payload publicado:
-
+**Exemplo de payload enviado:**
 ```json
 {
-  "temperature": 29.85,
-  "humidity": 56.2
+  "temperature": 24.00,
+  "humidity": 40.00
 }
+```
+
+---
+
+## Bibliotecas Utilizadas
+
+- [`DHT sensor library for ESPx`](https://github.com/beegee-tokyo/DHTesp)
+- [`PubSubClient`](https://github.com/knolleary/pubsubclient)
+
+---
+
+## Resultados Esperados
+
+- Os dados são recebidos no HiveMQ Web Client a cada 5 segundos.
+- O LED acende quando a temperatura for ≥ 20 °C.
+- A comunicação é realizada via protocolo MQTT sobre **TLS**, garantindo segurança.
+
+---
+
+## Autor
+
+**Marielle Santos da Silva**  
+Estudante de Análise e Desenvolvimento de Sistemas  
+Universidade Presbiteriana Mackenzie  
